@@ -1,0 +1,92 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="大学数据库">
+  <section class="pt-20 pb-20 px-4 md:px-8">
+    <div class="max-w-7xl mx-auto">
+      <h1 class="text-center mb-12">大学数据库</h1>
+
+      <!-- 搜索和过滤 -->
+      <div class="apple-card mb-12">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div>
+            <label class="block text-sm font-semibold mb-2">搜索大学</label>
+            <input type="text" placeholder="输入大学名称..." class="w-full px-4 py-2 border border-white/30 rounded-lg bg-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2">国家/地区</label>
+            <select class="w-full px-4 py-2 border border-white/30 rounded-lg bg-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option>所有国家</option>
+              <option>美国</option>
+              <option>英国</option>
+              <option>加拿大</option>
+              <option>澳大利亚</option>
+            </select>
+          </div>
+          <div>
+            <label class="block text-sm font-semibold mb-2">排名范围</label>
+            <select class="w-full px-4 py-2 border border-white/30 rounded-lg bg-white/50 focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <option>所有排名</option>
+              <option>1-50</option>
+              <option>51-100</option>
+              <option>101-200</option>
+              <option>200+</option>
+            </select>
+          </div>
+          <div class="flex items-end">
+            <button class="w-full px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition font-semibold">
+              搜索
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 大学列表 -->
+      <div class="space-y-4">
+        {[1, 2, 3, 4, 5].map((i) => (
+          <a href={`/universities/harvard-${i}`} class="apple-card flex flex-col md:flex-row md:items-center md:justify-between hover:shadow-xl transition">
+            <div class="flex-1">
+              <div class="flex items-center gap-4 mb-3">
+                <span class="text-2xl font-bold gradient-text">#{i}</span>
+                <h3 class="font-bold text-lg">示例大学 {i}</h3>
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm text-gray-600">
+                <div>
+                  <span class="font-semibold">国家</span>
+                  <p>美国</p>
+                </div>
+                <div>
+                  <span class="font-semibold">成立</span>
+                  <p>1800</p>
+                </div>
+                <div>
+                  <span class="font-semibold">学生数</span>
+                  <p>15,000+</p>
+                </div>
+                <div>
+                  <span class="font-semibold">QS排名</span>
+                  <p>Top 50</p>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 md:mt-0 md:ml-6">
+              <button class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
+                查看详情
+              </button>
+            </div>
+          </a>
+        ))}
+      </div>
+
+      <!-- 分页 -->
+      <div class="flex justify-center gap-2 mt-12">
+        <button class="px-4 py-2 glass-button">上一页</button>
+        <button class="px-4 py-2 bg-blue-600 text-white rounded-lg">1</button>
+        <button class="px-4 py-2 glass-button">2</button>
+        <button class="px-4 py-2 glass-button">3</button>
+        <button class="px-4 py-2 glass-button">下一页</button>
+      </div>
+    </div>
+  </section>
+</Layout>

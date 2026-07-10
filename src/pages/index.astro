@@ -1,0 +1,134 @@
+---
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="首页">
+  <!-- 英雄部分 -->
+  <section class="pt-20 pb-32 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h1 class="gradient-text mb-6">探索全球顶尖大学</h1>
+        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+          为全球华人提供最全面的大学升学指南，涵盖本科、研究生、博士等多个阶段
+        </p>
+        <div class="flex flex-wrap gap-4 justify-center">
+          <a href="/rankings" class="glass-button text-lg font-semibold">查看排名</a>
+          <a href="/universities" class="px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">浏览大学</a>
+        </div>
+      </div>
+
+      <!-- 统计数据 -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div class="apple-card text-center">
+          <div class="text-4xl font-bold gradient-text mb-2">500+</div>
+          <div class="text-gray-600">世界排名大学</div>
+        </div>
+        <div class="apple-card text-center">
+          <div class="text-4xl font-bold gradient-text mb-2">50+</div>
+          <div class="text-gray-600">权威榜单</div>
+        </div>
+        <div class="apple-card text-center">
+          <div class="text-4xl font-bold gradient-text mb-2">100+</div>
+          <div class="text-gray-600">申请指南</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 地图部分 -->
+  <section class="py-20 px-4 md:px-8 bg-gradient-to-b from-white/50 to-transparent">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-center mb-12">世界顶尖大学分布</h2>
+      <div class="apple-card p-0 overflow-hidden min-h-96">
+        <div id="map" class="w-full h-96"></div>
+      </div>
+      <p class="text-center text-gray-600 mt-4 text-sm">点击地图查看排名前100的大学位置分布</p>
+    </div>
+  </section>
+
+  <!-- 功能介绍 -->
+  <section class="py-20 px-4 md:px-8">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-center mb-12">核心功能</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="apple-card">
+          <div class="text-3xl mb-4">🏆</div>
+          <h3 class="font-bold mb-3">权威榜单排名</h3>
+          <p class="text-gray-600">汇集 QS、常青藤等全球权威榜单，实时更新排名数据</p>
+        </div>
+        <div class="apple-card">
+          <div class="text-3xl mb-4">📚</div>
+          <h3 class="font-bold mb-3">完整大学数据库</h3>
+          <p class="text-gray-600">详细的大学信息、录取要求、专业设置等全面数据</p>
+        </div>
+        <div class="apple-card">
+          <div class="text-3xl mb-4">📖</div>
+          <h3 class="font-bold mb-3">申请指南</h3>
+          <p class="text-gray-600">详细的申请流程指导，帮助你顺利申请心仪大学</p>
+        </div>
+        <div class="apple-card">
+          <div class="text-3xl mb-4">📰</div>
+          <h3 class="font-bold mb-3">最新资讯</h3>
+          <p class="text-gray-600">实时更新招生录取、移民政策、实习就业等资讯</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA 部分 -->
+  <section class="py-20 px-4 md:px-8 bg-gradient-to-r from-blue-50 to-purple-50">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="mb-6">准备好开始你的升学之旅了吗？</h2>
+      <p class="text-lg text-gray-600 mb-8">浏览我们的完整数据库，找到最适合你的大学</p>
+      <a href="/universities" class="inline-block px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition text-lg font-semibold">
+        开始探索
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  import L from 'leaflet'
+
+  // 初始化地图
+  const map = L.map('map').setView([20, 10], 2)
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© OpenStreetMap contributors',
+    maxZoom: 19,
+  }).addTo(map)
+
+  // 示例大学坐标（这里只是示例，实际应该从数据库获取）
+  const universities = [
+    { name: 'Harvard University', lat: 42.3601, lng: -71.0589, rank: 1 },
+    { name: 'Stanford University', lat: 37.4275, lng: -122.1697, rank: 2 },
+    { name: 'MIT', lat: 42.3601, lng: -71.0589, rank: 3 },
+    { name: 'University of Oxford', lat: 51.7519, lng: -1.2578, rank: 4 },
+    { name: 'University of Cambridge', lat: 52.2044, lng: 0.1165, rank: 5 },
+    { name: 'UC Berkeley', lat: 37.8722, lng: -122.2592, rank: 6 },
+    { name: 'Yale University', lat: 41.3083, lng: -72.9279, rank: 7 },
+    { name: 'Princeton University', lat: 40.348, lng: -74.6639, rank: 8 },
+    { name: 'University of Chicago', lat: 41.7896, lng: -87.5996, rank: 9 },
+    { name: 'University of Pennsylvania', lat: 39.9526, lng: -75.1905, rank: 10 },
+  ]
+
+  // 添加标记
+  universities.forEach((uni) => {
+    L.circleMarker([uni.lat, uni.lng], {
+      radius: 8,
+      fillColor: '#3b82f6',
+      color: '#ffffff',
+      weight: 2,
+      opacity: 1,
+      fillOpacity: 0.8,
+    })
+      .bindPopup(`<strong>${uni.rank}. ${uni.name}</strong>`)
+      .addTo(map)
+  })
+</script>
+
+<style>
+  #map {
+    border-radius: 1rem;
+  }
+</style>
